@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Policy;
 
 namespace ClassicTours.Models
@@ -8,14 +9,29 @@ namespace ClassicTours.Models
 
     public class User
     {
+        [Required]
+        [StringLength(50, MinimumLength = 2)]
+        [Column("firstName")]
+        [Display(Name = "First Name")]
+        public string firstName { get; set; }
+
+        [Required]
+        [StringLength(50, MinimumLength = 2)]
+        [Column("lastName")]
+        [Display(Name = "First Name")]
+        public string lastName { get; set; }
+
+
+        [Required]
+        [StringLength(50, MinimumLength = 2)]
+        [Column("userName")]
+        [Display(Name = "First Name")]
+        public string userName { get; set; }
+
+
         [Key]
         public int userId { get; set; }
-        [Required]
-        public string userName { get; set; }
-        [Required]
-        public string lastName { get; set; }
-        [Required]
-        public string firstName { get; set; }
+      
         [Required]
         public string Password { get; set; }
         [Required]
@@ -35,6 +51,7 @@ namespace ClassicTours.Models
         [Required]
         [Display(Name = "Date of birth")]
         public DateTime DateOfBirt { get; set;}
+
 
     }
 }

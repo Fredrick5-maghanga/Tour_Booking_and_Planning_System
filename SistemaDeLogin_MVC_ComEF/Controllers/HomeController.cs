@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace ClassicTours.Controllers
 {
-    [Authorize]//Adiciona "Autorização necessaria" para visualizar as Views
+    [Authorize]//Adds "Authorization required" to view Views
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -25,7 +25,7 @@ namespace ClassicTours.Controllers
         {
             return View();
         }
-        [AllowAnonymous]//habilita vizualizar sem logar
+        [AllowAnonymous]//enable view without login
         public IActionResult Contact()
         {
             return View();

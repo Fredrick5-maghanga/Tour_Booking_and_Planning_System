@@ -18,11 +18,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.5" />
+    <PackageReference Include="Neo4jClient.DataAnnotations" Version="2.2.4" />
 
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="SistemaDeLogin_MVC_ComEF\" />
   </ItemGroup>
 
   <ItemGroup>

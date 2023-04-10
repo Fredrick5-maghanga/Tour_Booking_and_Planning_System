@@ -3,33 +3,41 @@ using Microsoft.EntityFrameworkCore;
 
 using ClassicTours.Data;
 
-namespace ClassicTours
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
+//namespace ClassicTours
+//{
+   // public class Program
+    //{
+       // public static void Main(string[] args)
+        //{
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            //adiciona conexão com o banco
+            builder.Services.AddRazorPages();
+            //add bank connection
             builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
-                builder.Configuration.GetConnectionString("DefaultConnection")
-            ));
-            //adiciona Identity para login
+                builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'ClassicTours' not found.")));
+            
+            //add Identity for login
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
-            //adiciona RazorPages ao MVP
+            //adds RazorPages to MVP
             builder.Services.AddRazorPages();
 
             var app = builder.Build();
-            
-             
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+
+                DbInitializer.Initialize(services);
+            }
+
+
+
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+               
                 app.UseHsts();
             }
 
@@ -49,6 +57,6 @@ namespace ClassicTours
             //Permite rotas para Areas/Views em Razor
             app.MapRazorPages();
             app.Run();
-        }
-    }
-}
+       // }
+   // }
+//}
