@@ -16,19 +16,12 @@ namespace ClassicTours.Data
                     if (context.Users.Any())
                     {
                         return;
-
                         // DB has been seeded
-                        var Users = new User[]
-                        {
-                            new User{ userName="FredMaghanga", firstName= "Fred", lastName="Maghanga", city="Nairobi", currentAddress="PO BOX 111, Nairobi", permanentAddress="111 Nairobi"}
-
-                        };
-                        context.Users.AddRange(Users);
-
-                        //foreach (User s in Users)
-                        //{
-                        //    context.Userss.Add(s);
-                        //}
+                    }
+                    else
+                    {
+                        var users = new User { UserName = "FredMaghanga", firstName = "Fred", lastName = "Maghanga", city = "Nairobi", currentAddress = "PO BOX 111, Nairobi", permanentAddress = "111 Nairobi" };
+                        context.Users.Add(users);
                         context.SaveChanges();
                     }
                 }
